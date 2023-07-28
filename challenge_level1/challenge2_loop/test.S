@@ -19,8 +19,14 @@ loop:
   lw t3, 8(t0)
   add t4, t1, t2
   addi t0, t0, 12
-  beq t3, t4, loop        # check if sum is correct
-  j fail
+
+  bne t3, t4, fail   # Branch if the expected sum is not equal to the computed sum
+
+  # Decrement the test case counter
+  li t6, -1
+  add t5, t5, t6
+
+  bnez t5, loop      # If t5 is not zero, continue to the next test case
 
 test_end:
 
