@@ -1,0 +1,79 @@
+version: 1.0
+arch: rv32i
+
+instructions:
+  - name: illegal_instr_1
+    opcode: 0b0000011
+    funct3: 0b000
+    funct7: 0b0000000
+
+  - name: illegal_instr_2
+    opcode: 0b0000111
+    funct3: 0b000
+    funct7: 0b0000000
+
+  - name: illegal_instr_3
+    opcode: 0b0010011
+    funct3: 0b001
+    funct7: 0b0000000
+
+  - name: illegal_instr_4
+    opcode: 0b0100011
+    funct3: 0b010
+    funct7: 0b0000000
+
+  - name: illegal_instr_5
+    opcode: 0b0000011
+    funct3: 0b001
+    funct7: 0b0000000
+
+  - name: illegal_instr_6
+    opcode: 0b0010011
+    funct3: 0b010
+    funct7: 0b0000000
+
+  - name: illegal_instr_7
+    opcode: 0b0100011
+    funct3: 0b011
+    funct7: 0b0000000
+
+  - name: illegal_instr_8
+    opcode: 0b0110011
+    funct3: 0b100
+    funct7: 0b0000000
+
+  - name: illegal_instr_9
+    opcode: 0b0000011
+    funct3: 0b101
+    funct7: 0b0000000
+
+  - name: illegal_instr_10
+    opcode: 0b0010011
+    funct3: 0b110
+    funct7: 0b0000000
+
+initial_state:
+  pc: 0x00001000 # Start the test at address 0x1000
+
+memory:
+  mem_start: 0x00000000 # Start of memory region
+  mem_size: 0x10000000  # Size of memory region (adjust this as needed)
+
+program:
+  - illegal_instr_1
+  - illegal_instr_2
+  - illegal_instr_3
+  - illegal_instr_4
+  - illegal_instr_5
+  - illegal_instr_6
+  - illegal_instr_7
+  - illegal_instr_8
+  - illegal_instr_9
+  - illegal_instr_10
+
+exceptions:
+  - name: IllegalInstruction
+    exception_code: 2
+    interrupt: false
+
+end_of_test: true
