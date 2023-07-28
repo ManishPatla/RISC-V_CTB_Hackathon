@@ -11,8 +11,7 @@ RVTEST_CODE_BEGIN
 
   li TESTNUM, 2
 illegal_instruction:
-  .word 0              
-  j fail
+  add x0, x0, x0  # This is an invalid instruction (NOP with ADD opcode) causing an illegal instruction exception
   TEST_PASSFAIL
 
   .align 8
