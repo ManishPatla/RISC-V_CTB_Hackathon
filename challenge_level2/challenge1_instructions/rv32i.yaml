@@ -40,9 +40,9 @@ isa-instruction-distribution:
   rel_sys: 0
   rel_sys.csr: 0
   rel_rv32i.ctrl: 0
-  rel_rv32i.compute: 10
-  rel_rv32i.data: 10
-  rel_rv32i.fence: 10
+  rel_rv32i.compute: 100    # Set this to 100 to generate only RV32I base integer instructions
+  rel_rv32i.data: 0
+  rel_rv32i.fence: 0
   rel_rv64i.compute: 0
   rel_rv64i.data: 0
   rel_rv32i.zba: 0
@@ -63,7 +63,7 @@ isa-instruction-distribution:
   rel_rv32i.zbt: 0
   rel_rv64i.zbt: 0
   rel_rv32m: 0
-  rel_rv64m: 10
+  rel_rv64m: 0
   rel_rv32a: 0
   rel_rv64a: 0
   rel_rv32f: 0
