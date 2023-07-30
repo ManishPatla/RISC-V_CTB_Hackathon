@@ -1,98 +1,207 @@
-# Copyright Google LLC
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
-# ================================================================================
-#                  Regression test list format
-# --------------------------------------------------------------------------------
-# test            : Assembly test name
-# description     : Description of this test
-# gen_opts        : Instruction generator options
-# iterations      : Number of iterations of this test
-# no_iss          : Enable/disable ISS simulator (Optional)
-# gen_test        : Test name used by the instruction generator
-# asm_tests       : Path to directed, hand-coded assembly test file or directory
-# c_tests         : Path to directed, hand-coded C test file or directory
-# rtl_test        : RTL simulation test name
-# cmp_opts        : Compile options passed to the instruction generator
-# sim_opts        : Simulation options passed to the instruction generator
-# no_post_compare : Enable/disable comparison of trace log and ISS log (Optional)
-# compare_opts    : Options for the RTL & ISS trace comparison
-# gcc_opts        : gcc compile options
-# --------------------------------------------------------------------------------
-
-- test: riscv_arithmetic_basic_test
-  description: >
-    Arithmetic instruction test, no load/store/branch instructions
+- test: add_test
+  description: Addition instruction test
   gen_opts: >
-    +instr_cnt=10
-    +num_of_sub_program=0
-    +directed_instr_0=riscv_int_numeric_corner_stream,4
-    +no_fence=1
-    +no_data_page=1
-    +no_branch_jump=1
-    +boot_mode=m
-    +no_csr_instr=1
+    +instr_cnt=1
+    +directed_instr_0=riscv_instr_add,1
   iterations: 1
-  gen_test: riscv_instr_base_test
   rtl_test: core_base_test
 
-- test: riscv_rand_instr_test
-  description: >
-    Random instruction stress test
-  iterations: 1
-  gen_test: riscv_instr_base_test
+- test: sub_test
+  description: Subtraction instruction test
   gen_opts: >
-    +instr_cnt=10
-    +num_of_sub_program=1
-    +directed_instr_0=riscv_load_store_rand_instr_stream,4
-    +directed_instr_1=riscv_loop_instr,4
-    +directed_instr_2=riscv_hazard_instr_stream,4
-    +directed_instr_3=riscv_load_store_hazard_instr_stream,4
-    +directed_instr_4=riscv_multi_page_load_store_instr_stream,4
-    +directed_instr_5=riscv_mem_region_stress_test,4
-    +directed_instr_6=riscv_jal_instr,4
+    +instr_cnt=1
+    +directed_instr_0=riscv_instr_sub,1
+  iterations: 1
   rtl_test: core_base_test
 
-- test: riscv_jump_stress_test
-  description: >
-    Stress back-to-back jump instruction test
-  iterations: 1
-  gen_test: riscv_instr_base_test
+- test: sll_test
+  description: Shift left logical instruction test
   gen_opts: >
-    +instr_cnt=10
-    +num_of_sub_program=1
-    +directed_instr_1=riscv_jal_instr,20
+    +instr_cnt=1
+    +directed_instr_0=riscv_instr_sll,1
+  iterations: 1
   rtl_test: core_base_test
 
-- test: riscv_loop_test
-  description: >
-    Random instruction stress test
-  iterations: 1
-  gen_test: riscv_instr_base_test
+- test: slt_test
+  description: Set less than instruction test
   gen_opts: >
-    +instr_cnt=10
-    +num_of_sub_program=1
-    +directed_instr_1=riscv_loop_instr,20
+    +instr_cnt=1
+    +directed_instr_0=riscv_instr_slt,1
+  iterations: 1
   rtl_test: core_base_test
 
-- test: riscv_rand_jump_test
-  description: >
-    Jump among large number of sub-programs, stress testing iTLB operations.
-  iterations: 1
-  gen_test: riscv_instr_base_test
+- test: sltu_test
+  description: Set less than unsigned instruction test
   gen_opts: >
-    +instr_cnt=10
-    +num_of_sub_program=1
-    +directed_instr_0=riscv_load_store_rand_instr_stream,8
+    +instr_cnt=1
+    +directed_instr_0=riscv_instr_sltu,1
+  iterations: 1
+  rtl_test: core_base_test
+
+- test: xor_test
+  description: XOR instruction test
+  gen_opts: >
+    +instr_cnt=1
+    +directed_instr_0=riscv_instr_xor,1
+  iterations: 1
+  rtl_test: core_base_test
+
+- test: srl_test
+  description: Shift right logical instruction test
+  gen_opts: >
+    +instr_cnt=1
+    +directed_instr_0=riscv_instr_srl,1
+  iterations: 1
+  rtl_test: core_base_test
+
+- test: sra_test
+  description: Shift right arithmetic instruction test
+  gen_opts: >
+    +instr_cnt=1
+    +directed_instr_0=riscv_instr_sra,1
+  iterations: 1
+  rtl_test: core_base_test
+
+- test: or_test
+  description: OR instruction test
+  gen_opts: >
+    +instr_cnt=1
+    +directed_instr_0=riscv_instr_or,1
+  iterations: 1
+  rtl_test: core_base_test
+
+- test: and_test
+  description: AND instruction test
+  gen_opts: >
+    +instr_cnt=1
+    +directed_instr_0=riscv_instr_and,1
+  iterations: 1
+  rtl_test: core_base_test
+
+- test: addi_test
+  description: Addition immediate instruction test
+  gen_opts: >
+    +instr_cnt=1
+    +directed_instr_0=riscv_instr_addi,1
+  iterations: 1
+  rtl_test: core_base_test
+
+- test: slti_test
+  description: Set less than immediate instruction test
+  gen_opts: >
+    +instr_cnt=1
+    +directed_instr_0=riscv_instr_slti,1
+  iterations: 1
+  rtl_test: core_base_test
+
+- test: sltiu_test
+  description: Set less than immediate unsigned instruction test
+  gen_opts: >
+    +instr_cnt=1
+    +directed_instr_0=riscv_instr_sltiu,1
+  iterations: 1
+  rtl_test: core_base_test
+
+- test: xori_test
+  description: XOR immediate instruction test
+  gen_opts: >
+    +instr_cnt=1
+    +directed_instr_0=riscv_instr_xori,1
+  iterations: 1
+  rtl_test: core_base_test
+
+- test: ori_test
+  description: OR immediate instruction test
+  gen_opts: >
+    +instr_cnt=1
+    +directed_instr_0=riscv_instr_ori,1
+  iterations: 1
+  rtl_test: core_base_test
+
+- test: andi_test
+  description: AND immediate instruction test
+  gen_opts: >
+    +instr_cnt=1
+    +directed_instr_0=riscv_instr_andi,1
+  iterations: 1
+  rtl_test: core_base_test
+
+- test: lui_test
+  description: Load upper immediate instruction test
+  gen_opts: >
+    +instr_cnt=1
+    +directed_instr_0=riscv_instr_lui,1
+  iterations: 1
+  rtl_test: core_base_test
+
+- test: auipc_test
+  description: Add upper immediate to PC instruction test
+  gen_opts: >
+    +instr_cnt=1
+    +directed_instr_0=riscv_instr_auipc,1
+  iterations: 1
+  rtl_test: core_base_test
+
+- test: jal_test
+  description: Jump and link instruction test
+  gen_opts: >
+    +instr_cnt=1
+    +directed_instr_0=riscv_instr_jal,1
+  iterations: 1
+  rtl_test: core_base_test
+
+- test: jalr_test
+  description: Jump and link register instruction test
+  gen_opts: >
+    +instr_cnt=1
+    +directed_instr_0=riscv_instr_jalr,1
+  iterations: 1
+  rtl_test: core_base_test
+
+- test: beq_test
+  description: Branch if equal instruction test
+  gen_opts: >
+    +instr_cnt=1
+    +directed_instr_0=riscv_instr_beq,1
+  iterations: 1
+  rtl_test: core_base_test
+
+- test: bne_test
+  description: Branch if not equal instruction test
+  gen_opts: >
+    +instr_cnt=1
+    +directed_instr_0=riscv_instr_bne,1
+  iterations: 1
+  rtl_test: core_base_test
+
+- test: blt_test
+  description: Branch if less than instruction test
+  gen_opts: >
+    +instr_cnt=1
+    +directed_instr_0=riscv_instr_blt,1
+  iterations: 1
+  rtl_test: core_base_test
+
+- test: bge_test
+  description: Branch if greater than or equal instruction test
+  gen_opts: >
+    +instr_cnt=1
+    +directed_instr_0=riscv_instr_bge,1
+  iterations: 1
+  rtl_test: core_base_test
+
+- test: bltu_test
+  description: Branch if less than unsigned instruction test
+  gen_opts: >
+    +instr_cnt=1
+    +directed_instr_0=riscv_instr_bltu,1
+  iterations: 1
+  rtl_test: core_base_test
+
+- test: bgeu_test
+  description: Branch if greater than or equal unsigned instruction test
+  gen_opts: >
+    +instr_cnt=1
+    +directed_instr_0=riscv_instr_bgeu,1
+  iterations: 1
   rtl_test: core_base_test
