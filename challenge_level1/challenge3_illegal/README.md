@@ -29,6 +29,7 @@ In this modified code, we use the add instruction with x0 (the zero register) to
 [![Screenshot-2023-07-31-164759.png](https://i.postimg.cc/Pq5KBHkF/Screenshot-2023-07-31-164759.png)](https://postimg.cc/ts8hxLJh)
 
 **Verification Strategy:**
+
 Identifying the bug in the test.S file, where the "j fail" instruction caused an error due to the absence of a label named "fail."
 Modified the code in the "illegal_instruction" section to use an invalid instruction (NOP with ADD opcode) to trigger an illegal instruction exception.
 Ensured that the test still passes or fails based on the overall test results using the TEST_PASSFAIL macro.
