@@ -1,5 +1,10 @@
 # RISCV_CTB_CHALLENGES :
 
+**Welcome to the RISC-V CTB Challenge!
+In this hackathon, we will be working with the RISC-V architecture and assembly programming to verify and test RISC-V processors. For this challenge, we will be using Vyoma's UpTick Pro tool to set up the verification environment and Spike for simulation. Our focus will be on the RV32I ISA (Instruction Set Architecture).*
+
+
+
 ## Challenge Level 1: Logical,Loop,Illegal
 
 ### 1)Logical:
