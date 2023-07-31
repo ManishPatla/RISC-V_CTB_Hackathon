@@ -1,4 +1,4 @@
-# RISCV_CTB_Challenges
+# RISCV_CTB_CHALLENGES :
 
 ## Challenge Level 1: Logical,Loop,Illegal
 
@@ -12,23 +12,21 @@ Screnshot of the Bug:
 **Bug Explanation:**
 During the challenge, we encountered a logical bug in the "add" instruction implementation.
 
-1)
-##test.S:15855: Error: illegal operands 'and s7, ra, z4'
+1) **test.S:15855: Error: illegal operands 'and s7, ra, z4'**
 
 The instruction here is : and s7, ra, z4.
 The error message indicates that there is an issue with the operands used in this instruction.
 The and instruction is a bitwise AND operation, and it expects three registers as operands: and dest, source1, source2.
 s7, ra, and z4 are register names, and the assembler is reporting that there's something wrong with how they are used in this instruction.
 
-2)
-##test.S:25584: Error: illegal operands 'andi s5, t1, s0'
+2) **test.S:25584: Error: illegal operands 'andi s5, t1, s0'**
 
 The instruction here is andi s5, t1, s0.
 The error message again indicates an issue with the operands used in this instruction.
 The andi instruction is an immediate bitwise AND operation, and it also expects three registers as operands: andi dest, source1, imm.
 s5, t1, and s0 are register names, and the assembler is reporting that there's a problem with how they are used in this instruction.
 
-##Common reasons for these types of errors could be:
+**Common reasons for these types of errors could be:*
 
 Incorrect register names or typos.
 Incorrect syntax in the instructions.
@@ -43,7 +41,7 @@ To resolve this issue, you should use a valid general-purpose register (e.g., x0
 
 **Screenshot of Bug Fix:*
 
-Fixed Instruction:
+**Fixed Instruction:*
 and s7, ra, t0
 &
 andi s5, t1, 42
@@ -107,7 +105,7 @@ To fix this issue, we'll modify the code in the illegal_instruction section to p
 
 Here's the corrected code for the illegal_instruction section:
 
-illegal_instruction:
+**illegal_instruction:*
   add x0, x0, x0  # This is an invalid instruction (NOP with ADD opcode) causing an illegal instruction exception
   TEST_PASSFAIL
 
