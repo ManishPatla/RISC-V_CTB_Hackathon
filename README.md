@@ -1,15 +1,15 @@
-# riscv_ctb_challenges
+# RISCV_CTB_Challenges
 
-Challenge Level 1: Logical,Loop,Illegal
+## Challenge Level 1: Logical,Loop,Illegal
 
-1)Logical:
+### 1)Logical:
 
 Screnshot of the Bug:
 
 <img width="332" alt="image" src="https://github.com/vyomasystems-lab/riscv-ctb-challenge-ManishPatla/assets/109287423/53c7a165-afc9-4589-bfcd-c46cef859cf8">
 
 
-Bug Explanation:
+**Bug Explanation:**
 During the challenge, we encountered a logical bug in the "add" instruction implementation.
 
 1)
@@ -33,7 +33,7 @@ s5, t1, and s0 are register names, and the assembler is reporting that there's a
 Incorrect register names or typos.
 Incorrect syntax in the instructions.
 
-Bug Fix Explanation :
+**Bug Fix Explanation :**
 
 1)The error message test.S:15855: Error: illegal operands 'and s7, ra, z4' indicates that there's an issue with the usage of register z4. Since z4 is a zero register and cannot be written to, it cannot be used as a source or destination in an instruction like and.
 
@@ -41,7 +41,7 @@ To resolve this issue, you should use a valid general-purpose register (e.g., x0
 
 2)In RISC-V assembly, immediate instructions like andi expect a constant immediate value as one of the operands. The immediate value is a fixed constant value that is used in the operation, and it is not represented by a register.
 
-Screenshot of Bug Fix:
+**Screenshot of Bug Fix:*
 
 Fixed Instruction:
 and s7, ra, t0
@@ -52,10 +52,10 @@ andi s5, t1, 42
 
 
 
-2)Loop:
+### 2)Loop:
 
 
-Bug Explanation:
+**Bug Explanation:**
 
 We have an test file which runs without exiting the spike here the test performs addition operation and self checks for 3 set of test cases
 
@@ -67,7 +67,7 @@ Analysisng Test.S file here :
 Here the test file is designed to perform addition operations and check the results against expected values. However, there seems to be an issue with the comparison and failure detection in the loop.
 
 
-Bug Fix Solution:
+**Bug Fix Solution:**
 
 To fix the test, we need to adjust the comparison and failure detection logic in the loop. The current code uses beq instruction to check if t3 (the expected sum) is equal to t4 (the computed sum). However, beq only branches when the two operands are equal. In this case, we need to branch when they are not equal, indicating a failure.
 
@@ -98,12 +98,12 @@ After each iteration, we decrement the test case counter using sub t5, t5, 1.
 If the test case counter t5 is not zero (bnez t5, loop), we continue to the next test case.
 The loop now iterates through all the test cases and performs the addition operation correctly while checking for failures. If there's any mismatch between the expected and computed sums, the test will jump to the fail label.
 
-Screenshot of the Bug Fix:
+**Screenshot of the Bug Fix:*
 
 [![Screenshot-2023-07-31-170552.png](https://i.postimg.cc/ZKRJwBWG/Screenshot-2023-07-31-170552.png)](https://postimg.cc/Jtfwnhcx)
 
 
-3) Illegal:
+### 3) Illegal:
 
 Here we have a test file, which runs without exiting in spike and it has an illegal instruction and corresponding handler code, we try to  fix the test 
 
@@ -146,11 +146,11 @@ RVTEST_DATA_BEGIN
 RVTEST_DATA_END
 
 
-Bug Explanation:
+**Bug Explanation:**
 
 The issue is that the instruction j fail in the illegal_instruction section is not a valid RISC-V instruction. The j instruction is used for jumps (J-type) but requires a label as its target, not an immediate value or register. Since there is no label named fail in the code you've provided, this instruction results in an error.
 
-Bug Fix :
+**Bug Fix :**
 
 To fix this issue, we'll modify the code in the illegal_instruction section to perform a different operation that causes an illegal instruction exception. One way to do this is by using an invalid opcode, such as add x0, x0, x0, which is essentially a no-operation (NOP) instruction with the ADD opcode.
 
@@ -162,7 +162,7 @@ illegal_instruction:
 
 In this modified code, we use the add instruction with x0 (the zero register) to perform an invalid operation that causes an illegal instruction exception. The TEST_PASSFAIL macro is used to ensure the test still passes or fails based on the overall test results.
 
-Screenshot of Bug Fix:
+**Screenshot of Bug Fix:*
 
 [![Screenshot-2023-07-31-164759.png](https://i.postimg.cc/Pq5KBHkF/Screenshot-2023-07-31-164759.png)](https://postimg.cc/ts8hxLJh)
 
@@ -174,7 +174,7 @@ Screenshot of Bug Fix:
 So challenge level 2 is an AAPG generation test and AAPG generation file is given as a part of the program , running the make exposes the problem 
 We have to fix the config file to generate the Assembly test 
 
-Bug Explanation:
+**Bug Explanation:**
 
 So the level1 of challenge 2 is here:
 we have riscv32i.yaml file and after running the make i have got the following errors:
@@ -434,7 +434,7 @@ test.S:1223: Error: unrecognized opcode `divw a6,s0,s0'
 make: *** [Makefile:11: compile] Error 1
 
 
-Bug Fix and Explanation:
+**Bug Fix and Explanation:**
 
 The errors we are encountering indicates that the assembly test file test.S contains instructions that are not recognized by the RISC-V assembler. This could be due to instructions that are not part of the RISC-V RV32I instruction set.
 
@@ -490,7 +490,7 @@ isa-instruction-distribution:
   rel_rv32d: 0
   rel_rv64d: 0
 
-# Compressed instructions
+#Compressed instructions
 
   rel_rvc.ctrl: 0
   rel_rvc.compute: 0
@@ -522,19 +522,19 @@ recursion-options:
   recursion-calls: 5
 
 
-Screenshot of Bug Fix:
+**Screenshot of Bug Fix:*
 
 [![Screenshot-2023-07-31-171248.png](https://i.postimg.cc/3wJRQSNw/Screenshot-2023-07-31-171248.png)](https://postimg.cc/75dDgNgv)
 
 
-Challenge Level 2 : Exceptions
+## Challenge Level 2 : Exceptions
 
-This is an AAPG  generation test setup
+**This is an AAPG  generation test setup*
 Here with expereince from the previous challenge ,we create a AAPG config file to generate  a test with 10 illegal exceptions with the correct handler code 
 
 To generate a test with 10 illegal exceptions and the correct handler code using AAPG, we will need to modify the AAPG configuration file (rv32i.yaml) accordingly. Specifically, we need to define the handler code for each illegal exception and ensure that the test runs successfully on Spike.
 
-i)Yaml File Creation:
+**i)Yaml File Creation:**
 
 Here the The YAML file serves as a configuration file that provides instructions to AAPG on how to generate a random RISC-V program.
 The YAML file was created manually to configure the behavior of the Automated Assembly Program Generator (AAPG) tool.
@@ -542,7 +542,7 @@ It contains various sections, each specifying different aspects of the program g
 
 The configuration file is created using a text editor, and each section is organized hierarchically using indentation. The values specified in the YAML file influence the frequency and distribution of instructions, privilege modes, data access sections, CSR (Control and Status Register) sections, recursion options, self-checking settings, exception generation, cache thrashing, and more.
 
-ii) Exceptions Generation Explanation
+**ii) Exceptions Generation Explanation:**
 
 In the YAML file, there is a section called exception-generation, which is responsible for controlling the generation of exceptions in the random RISC-V program. Each exception cause is represented by a key (e.g., ecause00, ecause01, etc.) and its corresponding value determines the number of exceptions generated for that particular cause.
 
@@ -556,22 +556,22 @@ By setting the values accordingly in the exception-generation section, you can c
 
 Overall, the exception-generation section allows us to tailor the exception generation behavior according to your testing or verification requirements.
 
-Screenshot of bug fixed:
+**Screenshot of bug fixed:*
 
 [![Screenshot-263.png](https://i.postimg.cc/3N7SRvvn/Screenshot-263.png)](https://postimg.cc/ZB7Fs0jd)
 
 
-Challenge Level 3:
+## Challenge Level 3:
 
-**Opensource RISC-V Design Core: RiscV_Steel_Core**
+**Opensource RISC-V Design Core: RiscV_Steel_Core*
 
 Here,
 
 We focus on inserting bugs into our design Riscv_Steel_Core.V , and write test cases to expose the Bugs 
 
-Explanation of the Bugs introduced into Riscv_Steel_Core.v
+**Explanation of the Bugs introduced into Riscv_Steel_Core.v:**
 
-Bug 1: Incorrect CSR Write Data
+**Bug 1: Incorrect CSR Write Data*
 In the always @* begin : csr_data_out_mux block, introduced a bug that causes incorrect CSR data to be read from the csr_data_out register.
 
 always @(posedge clock) begin : csr_data_out_mux
@@ -602,7 +602,7 @@ always @(posedge clock) begin : csr_data_out_mux
     endcase
 end
 
-Bug 2: Incorrect Load Data
+**Bug 2: Incorrect Load Data*
 In the always @* begin : load_size_mux block, introduced a bug that causes incorrect data to be loaded from memory for byte and half-word loads.
 
 always @* begin : load_size_mux
@@ -619,7 +619,7 @@ always @* begin : load_size_mux
 end
 
 
-Bug 3: Incorrect Branch Condition
+**Bug 3: Incorrect Branch Condition*
 In the always @* begin : branch_condition_satisfied_mux block,  introduced a bug that causes incorrect branch condition determination.
 
 always @* begin : branch_condition_satisfied_mux
@@ -740,7 +740,7 @@ trap_handler:
     csrw mepc, t0            # Write back the updated mepc value
     mret                     # Perform mret to return from trap
 
-This test file "test.S" contains three tests, each designed to expose one of the bugs we introduced earlier. It uses the RISC-V assembly language to write the test cases for the bugs in the design. The test cases aim to execute specific instructions that trigger the bugs and then verify the results by comparing them with the expected values.
+**This test file "test.S" contains three tests, each designed to expose one of the bugs we introduced earlier. It uses the RISC-V assembly language to write the test cases for the bugs in the design. The test cases aim to execute specific instructions that trigger the bugs and then verify the results by comparing them with the expected values.*
 
 
 
