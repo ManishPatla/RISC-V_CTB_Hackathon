@@ -41,4 +41,8 @@ We focus on test cases that cover different instruction types, load/store instru
 
 **This test file "test.S" contains three tests, each designed to expose one of the bugs we introduced earlier. It uses the RISC-V assembly language to write the test cases for the bugs in the design. The test cases aim to execute specific instructions that trigger the bugs and then verify the results by comparing them with the expected values.*
 
+**Verification Strategy**
+
+**Bug Identification: The first step was to identify and introduce three specific bugs in the RISC-V Core design. Each bug was targeted to affect different functional blocks, such as CSR write data, load data, and branch condition.Bug Insertion: The bugs were inserted into the relevant blocks of the RISC-V Core (Riscv_Steel_Core.v) using appropriate RTL modifications.Test Case Design: After introducing the bugs, test cases were designed in the form of RISC-V assembly code (test.S). Each test case was crafted to execute specific instructions that would trigger the corresponding bugs in the design.Bug Exposition: The designed test cases were then run on the Verilator simulator to execute the RISC-V Core with the introduced bugs. The simulation results were analyzed to observe the manifestation of each bug during the execution of the test cases.
+Result Verification: For each test case, the output results were compared with the expected values to verify the correctness of the RISC-V Core's behavior in the presence of the introduced bugs.*
 
