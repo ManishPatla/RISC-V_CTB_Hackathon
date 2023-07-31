@@ -45,3 +45,7 @@ andi s5, t1, 42
 
 <img width="699" alt="image" src="https://github.com/vyomasystems-lab/riscv-ctb-challenge-ManishPatla/assets/109287423/f7c7bafc-936f-476d-9931-b6bd63e2343f">
 
+
+**Verification Strategy Used**:
+**combination of manual code review and functional testing*
+Overall, the verification strategy here used a combination of manual inspection and automated functional testing to identify and fix the logical bug in the RISC-V assembly code. This approach enables effective bug detection and reporting, leading to continuous improvement in the design and verification process.
