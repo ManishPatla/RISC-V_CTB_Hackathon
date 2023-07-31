@@ -37,3 +37,8 @@ Here's the updated rv32i.yaml file with the changes:
 
 [![Screenshot-2023-07-31-171248.png](https://i.postimg.cc/3wJRQSNw/Screenshot-2023-07-31-171248.png)](https://postimg.cc/75dDgNgv)
 
+
+**Verification Strategy:**
+
+Identified the errors in the test.S file indicating unrecognized instructions by the RISC-V assembler, caused by instructions not part of the RV32I instruction set.Analyzed the riscv32i.yaml file to understand the instruction distribution and identified the need to modify the isa-instruction-distribution section to generate only RV32I instructions.
+Updated the riscv32i.yaml file by setting the relative frequency of non-RV32I instructions to 0, ensuring that only instructions from the RV32I base integer instruction set are generated
