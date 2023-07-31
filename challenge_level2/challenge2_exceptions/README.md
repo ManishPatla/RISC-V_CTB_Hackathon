@@ -33,3 +33,12 @@ Overall, the exception-generation section allows us to tailor the exception gene
 
 [![Screenshot-263.png](https://i.postimg.cc/3N7SRvvn/Screenshot-263.png)](https://postimg.cc/ZB7Fs0jd)
 
+
+**Verification Strategy:**
+
+Created a YAML configuration file (rv32i.yaml) manually to specify the desired behavior for the Automated Assembly Program Generator (AAPG).
+Defined the exception-generation section in the YAML file to control the generation of exceptions in the random RISC-V program.
+Set the value for ecause00, ecause01, and ecause02 to 10 to generate 10 illegal instruction exceptions for each of these causes.
+Set the value for ecause03 to ecause14 to 0 to disable the generation of exceptions for these causes.
+By configuring the exception-generation section, ensured that the generated test program includes 10 illegal exceptions with the correct handler code for the enabled exceptions.
+
