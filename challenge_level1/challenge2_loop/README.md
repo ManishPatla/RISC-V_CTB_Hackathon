@@ -35,3 +35,7 @@ The loop now iterates through all the test cases and performs the addition opera
 
 [![Screenshot-2023-07-31-170552.png](https://i.postimg.cc/ZKRJwBWG/Screenshot-2023-07-31-170552.png)](https://postimg.cc/Jtfwnhcx)
 
+**Verification Strategy** :
+
+The verification strategy used here involves identifying logical bugs in the test files provided for the challenge.
+Then isolating the specific instructions and lines of code that were causing the errors, analyze the operands used in the instructions and pointed out the correct way to fix them.
