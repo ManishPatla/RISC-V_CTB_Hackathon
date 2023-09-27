@@ -1,3 +1,6 @@
+<img width="749" alt="image" src="https://github.com/ManishPatla/RISC-V_CTB_Hackathon/assets/109287423/f9436419-e6f4-45cc-ac4f-c8b8d30b8a79">
+
+
 # RISCV_CTB_CHALLENGE
 
 **Welcome to the RISC-V CTB Challenge!
