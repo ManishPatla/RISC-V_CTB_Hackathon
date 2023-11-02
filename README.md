@@ -1,3 +1,7 @@
+<img width="336" alt="image" src="https://github.com/ManishPatla/RISC-V_CTB_Hackathon/assets/109287423/7b6295fd-c042-45dc-85f1-accbf42539ea">
+
+
+
 <img width="749" alt="image" src="https://github.com/ManishPatla/RISC-V_CTB_Hackathon/assets/109287423/f9436419-e6f4-45cc-ac4f-c8b8d30b8a79">
 
 
